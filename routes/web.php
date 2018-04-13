@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/addwork', 'AddworkController@index')->name('addwork');
 
 Route::post('/addwork/store', 'AddworkController@store');
+
+Route::get('/addwork/show',  'AddworkController@show')->name('show');

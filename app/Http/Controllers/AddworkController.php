@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\addwork;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AddworkController extends Controller
 {
@@ -38,11 +40,15 @@ class AddworkController extends Controller
         $this->validate($request, array(
             'work' => 'required',
         ));
-
-        $addwork = addwork::create($request->all());
+        
+        $addwork = addwork::create([
+            'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'work' => $request->get('work'),
+        ]);
         $addwork->save();
         Session::flash('Success', 'The Data was successfully saved!');
-        return redirect('home');
+        return redirect('addwork/show');
     }
 
     /**
@@ -53,7 +59,10 @@ class AddworkController extends Controller
      */
     public function show(addwork $addwork)
     {
-        //
+        $uemail = Auth::user()->email;
+        $usersview = addwork::where('email', $uemail)
+               ->get();
+        return view('home',compact('usersview'));
     }
 
     /**

@@ -8,9 +8,9 @@
                 <div class="card-header">Add Your Work</div>
 
                 <div class="card-body">
-                    {{-- @if (session('status'))
+                    {{-- @if (session('Success'))
                         <div class="alert alert-success">
-                            {{ session('status') }}
+                            {{ session('Success') }}
                         </div>
                     @endif --}}
 
