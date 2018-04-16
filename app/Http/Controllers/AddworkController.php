@@ -48,7 +48,7 @@ class AddworkController extends Controller
         ]);
         $addwork->save();
         Session::flash('Success', 'The Data was successfully saved!');
-        return redirect('addwork/show');
+        return redirect('/addwork/show');
     }
 
     /**
